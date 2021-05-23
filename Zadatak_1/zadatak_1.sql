@@ -115,6 +115,28 @@ update zena set hlace='zimske' where sifra='1';
 update zena set hlace='letnje' where sifra='2'; 
 update zena set hlace='jeans' where sifra='3'; 
 
+
+select dukserica 
+from muskarac a inner join mladic b on a.sifra=b.sifra;
+
+select hlace,novcica 
+from cura a inner join punac b on b.sifra=a.sifra;
+
+select f.dukserica, d.asocijalno, c.hlace
+from sestra a 
+inner join zena b on a.sifra = b.sestra
+inner join muskarac c on b.sifra = c.zena
+inner join mladic d on c.sifra = d.muskarac
+inner join sestra_svekar e on a.sifra= e.sestra
+inner join svekar f on e.svekar = f.sifra
+where b.hlace like 'a%' and a.haljina like '%ba%' order by c.hlace desc;
+
+
+select s2.haljina,s2.maraka from sestra s2
+left join sestra_svekar ss on ss.sestra =s2.sifra 
+where s2.sifra is null;
+
+
 select * from cura;
 select * from zena;
 select * from muskarac;
